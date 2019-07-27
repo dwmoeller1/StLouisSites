@@ -29,13 +29,14 @@ namespace StLouisSites.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            userManager.GetUserId(User);
             return View();
         }
 
         [HttpPost]
         public IActionResult Create(Location location)
         {
+            string currentUserId = userManager.GetUserId(User);
+
             context.Add(location);
             context.SaveChanges();
             return RedirectToAction(nameof(Index));
